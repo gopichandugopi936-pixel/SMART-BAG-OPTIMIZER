@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compare four algorithms for the 0/1 Knapsack problem.">
+  <title>Smart Bag Optimizer | Algorithm Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">Smart Bag <span>Optimizer</span></a>
+    <span class="badge">ALGORITHM EXPLORER</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">0/1 KNAPSACK PROBLEM</p>
+      <h1>Pack smarter. <span>Compare algorithms.</span></h1>
+      <p class="intro">Choose items for your bag without exceeding its weight capacity. Explore four algorithmic approaches and compare their results.</p>
+    </section>
+
+    <section class="overview grid-3">
+      <article class="card">
+        <h2>The problem</h2>
+        <p>Select each item at most once while keeping the total weight within the bag's capacity.</p>
+      </article>
+      <article class="card">
+        <h2>Why it matters</h2>
+        <p>Useful for packing, budgeting limited resources, cargo loading and selecting equipment.</p>
+      </article>
+      <article class="card">
+        <h2>What we compute</h2>
+        <p>The selected items, total weight, total value and algorithm performance.</p>
+      </article>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading">
+        <div><p class="eyebrow">STEP 01</p><h2>Enter your items</h2></div>
+        <p class="muted">All weights and values must be non-negative; weights must be greater than zero.</p>
+      </div>
+
+      <form id="item-form" class="card form-card">
+        <div class="capacity-row">
+          <label for="capacity">Bag capacity (weight units)</label>
+          <input id="capacity" type="number" min="1" step="1" value="10" required>
+        </div>
+        <div class="item-inputs">
+          <label>Item name<input id="item-name" type="text" placeholder="e.g. Laptop" maxlength="40"></label>
+          <label>Weight<input id="item-weight" type="number" min="0.01" step="any" placeholder="e.g. 3"></label>
+          <label>Value<input id="item-value" type="number" min="0" step="any" placeholder="e.g. 60"></label>
+          <button class="button secondary" type="submit">＋ Add item</button>
+        </div>
+        <p id="form-message" class="message" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="section-heading compact">
+        <h2>Your item list</h2>
+        <button id="reset-button" class="text-button" type="button">Reset example</button>
+      </div>
+      <div class="card table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Weight</th><th>Value</th><th>Action</th></tr></thead>
+          <tbody id="items-body"></tbody>
+        </table>
+        <p id="empty-state" class="empty-state">No items yet. Add an item above to begin.</p>
+      </div>
+
+      <div class="run-row">
+        <button id="solve-button" class="button primary" type="button">Run all four algorithms →</button>
+        <p id="solve-message" class="message" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading">
+        <div><p class="eyebrow">STEP 02</p><h2>Explore the algorithms</h2></div>
+        <p class="muted">Each method solves the same input using a different strategy.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Algorithm approaches">
+        <button class="tab active" role="tab" aria-selected="true" data-algorithm="brute">Brute Force</button>
+        <button class="tab" role="tab" aria-selected="false" data-algorithm="greedy">Greedy</button>
+        <button class="tab" role="tab" aria-selected="false" data-algorithm="dp">Dynamic Programming</button>
+        <button class="tab" role="tab" aria-selected="false" data-algorithm="backtracking">Backtracking</button>
+      </div>
+      <article class="card result-card" id="algorithm-panel" aria-live="polite">
+        <p class="eyebrow">ALGORITHM DETAILS</p>
+        <h2 id="algorithm-title">Brute Force</h2>
+        <p id="algorithm-description">Checks every possible combination and chooses the valid combination with the highest value.</p>
+        <div class="complexity-row">
+          <div><span class="muted">Time complexity</span><strong id="time-complexity">O(2ⁿ)</strong></div>
+          <div><span class="muted">Space complexity</span><strong id="space-complexity">O(n)</strong></div>
+        </div>
+        <div id="algorithm-result" class="result-placeholder">Run the algorithms to see the result for your items.</div>
+      </article>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading"><div><p class="eyebrow">STEP 03</p><h2>Compare results</h2></div></div>
+      <div class="card table-wrap">
+        <table>
+          <thead><tr><th>Algorithm</th><th>Selected items</th><th>Total weight</th><th>Total value</th></tr></thead>
+          <tbody id="comparison-body"><tr><td colspan="4" class="muted">Run the algorithms to populate this comparison.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer><p>Smart Bag Optimizer · BTech Algorithm Explorer Project</p></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
